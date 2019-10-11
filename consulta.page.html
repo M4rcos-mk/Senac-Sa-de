@@ -1,0 +1,47 @@
+<ion-header> 
+ 
+ </ion-header>
+ 
+ <ion-content>
+  
+     <ng-container *ngIf="!databases || databases.length ==0">
+       <div *ngFor="let n of [0,1,2]" padding>
+         <ion-skeleton-text></ion-skeleton-text>
+         <p>
+           <ion-skeleton-text class="fake-skeleton"></ion-skeleton-text>
+         </p>
+       </div>
+     </ng-container>
+ 
+     <ion-item-sliding *ngFor="let databases of databases">
+     <ion-item lines="inset" button [routerLink]="['/cadastro', databases.id]">
+       <ion-label>
+        {{ databases.task }}
+        <p>{{ databases.email }}</p>
+        <p>Glisose: {{ databases.glicose }}</p>
+        <p>Pressão: {{ databases.pressao }}</p>
+        <p>IMC: {{ databases.imc }}</p>
+        <p>{{ databases.msg }}</p>
+        <p>{{ databases.createdAt | date: 'short'}}</p>
+         </ion-label>
+    </ion-item>
+     
+     <ion-item-options side="end">
+       <ion-item-option (click)="remove(databases)" color="danger">
+         Deletar
+         <ion-icon name="checkmark" slot="end"></ion-icon>
+       </ion-item-option>
+     </ion-item-options>
+ 
+   </ion-item-sliding>
+   
+   
+   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+     <ion-fab-button routerLink="/todo-detail" routerDirection="forward" color=dark>
+      <ion-icon name="add"></ion-icon>
+      </ion-fab-button>
+      </ion-fab>
+ 
+ 
+ </ion-content>
+ 
